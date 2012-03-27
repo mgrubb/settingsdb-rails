@@ -1,0 +1,43 @@
+= SettingsDB-Rails
+
+SettingsDB provides an easy to use mechanism for keeping application settings
+in your database.  It also provides a namespacing mechanism to keep settings
+from different areas separate, as well as a defaults option.
+
+== Getting Started
+
+Add settingsdb-rails to your Gemfile:
+
+  gem 'settingsdb-rails'
+
+To install the model, migration, and defaults initializer:
+
+  rails generate settingsdb:install
+  rake db:migrate
+
+This will create a `settings` model, migration, and initializer file.
+Now just reference settings in your code:
+
+  <% title Setting[:site_title] %>
+
+To create a new setting just set its value:
+
+  Setting[:site_title] = "My Awesome Site!"
+
+Non-qualified key operations use the `:default` namespace, to set a key
+in a particular namespace:
+
+  Setting[:myplugin, :site_title] = "My Awesome Plugin Site!"
+
+To set application defaults, use `SettingsDB::Defaults`:
+
+  SettingsDB::Defaults[:site_title] = 'Untitled'
+  SettingsDB::Defaults[:myplugin, :site_title] = 'Untitled Plugin'
+
+Or use a block:
+
+  SettingsDB::Defaults.config do |c|
+    c[:site_title] = 'Untitled'
+    c[:myplugin, :site_title] = 'Untitled Plugin'
+  end
+

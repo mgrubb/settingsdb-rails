@@ -2,7 +2,6 @@ require 'settingsdb/defaults'
 require 'active_support/concern'
 require 'active_support/core_ext/hash/indifferent_access'
 require 'yaml'
-require 'pry'
 
 module SettingsDB::Settings # :nodoc:
   extend ActiveSupport::Concern
@@ -43,7 +42,6 @@ module SettingsDB::Settings # :nodoc:
     # namespace only, if +:namespace+ is not given then +:default+ is
     # used.
     def []=(namespace = :default, index, value)
-      #binding.pry
       obj = get_setting(namespace, index)
       if obj
         obj.write_attribute(setting_value_field, value)

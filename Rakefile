@@ -14,10 +14,13 @@ end
 
 RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'SettingsdbRails'
+  rdoc.title    = 'SettingsDB-Rails'
+  rdoc.main     = 'README.rdoc'
   rdoc.options << '--line-numbers'
   rdoc.rdoc_files.include('README.rdoc')
   rdoc.rdoc_files.include('lib/**/*.rb')
+  rdoc.rdoc_files.exclude('lib/settingsdb-rails.rb', 'lib/settingsdb/version.rb')
+  rdoc.rdoc_files.exclude('lib/generators/**/*')
 end
 
 

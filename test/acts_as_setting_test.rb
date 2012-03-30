@@ -80,4 +80,11 @@ class ActsAsSettingTest < ActiveSupport::TestCase
     cache[:default][:foo].destroy
     assert_nil cache[:default][:foo]
   end
+
+  test "settings model falls back to default if no setting found" do
+    assert_nil ConfigB[:bar]
+    SettingsDB::Defaults[:bar] = :baz
+    assert_equal :baz, SettingsDB::Defaults[:bar]
+    assert_equal :baz, ConfigB[:bar]
+  end
 end

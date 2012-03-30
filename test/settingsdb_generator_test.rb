@@ -17,7 +17,7 @@ class SettingsDBGeneratorTest < Rails::Generators::TestCase
       assert_match migration, /add_index\s+:settings\s*,\s*:name/
     end
     assert_file "app/models/setting.rb" do |model|
-      assert_match model, /include SettingsDB::Settings/
+      assert_match model, /acts_as_setting/
     end
   end
 

@@ -2,6 +2,10 @@ require 'test_helper'
 
 class SettingsDBDefaultsTest < ActiveSupport::TestCase
 
+  setup do
+    SettingsDB::Defaults.reset!
+  end
+
   test "module exists" do
     assert_kind_of Module, SettingsDB
     assert_kind_of Class, SettingsDB::Defaults
@@ -26,10 +30,11 @@ class SettingsDBDefaultsTest < ActiveSupport::TestCase
     assert_equal SettingsDB::Defaults[:baz, :bar] = :foo, SettingsDB::Defaults[:baz, :bar]
   end
 
-  test "config class method returns class" do
+  test "config class method returns Class" do
+    SettingsDB::Defaults[:bar] = :baz
     config = SettingsDB::Defaults.config
-    assert_kind_of Class, config
-    assert_equal SettingsDB::Defaults.name, config.name
+    assert_equal SettingsDB::Defaults, config
+    assert_equal :baz, config[:bar]
   end
 
   test "defaults class method returns defaults hash copy" do

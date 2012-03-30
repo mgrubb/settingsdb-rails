@@ -9,6 +9,7 @@ Gem::Specification.new do |s|
   s.version     = SettingsDB::VERSION
   s.authors     = ["Michael Grubb"]
   s.email       = ["spamtrap@dailyvoid.com"]
+  s.homepage    = "https://github.com/mgrubb/settingsdb-rails"
   s.summary     = "Keep application settings in the database"
   s.description = "Keep application settings in the database"
 

@@ -28,7 +28,7 @@ module SettingsDB::Settings # :nodoc:
     def [](namespace = :default, index)
       obj = get_setting(namespace, index)
       return obj.read_attribute(setting_value_field) if obj
-      Defaults[namespace, index]
+      SettingsDB::Defaults[namespace, index]
     end
 
 

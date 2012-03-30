@@ -26,7 +26,7 @@ module SettingsDB::Generators # :nodoc: all
 
     def inject_settingsdb_content
       return if !options.model?
-      inject_into_class(model_path, model_class, "  include SettingsDB::Settings\n")
+      inject_into_class(model_path, model_class, "  acts_as_setting\n")
     end
 
     def add_settingsdb_migration

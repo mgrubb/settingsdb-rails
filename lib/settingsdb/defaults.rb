@@ -53,7 +53,7 @@ class SettingsDB::Defaults
     if block_given?
       yield self
     end
-    defaults!
+    self
   end
 
   ##

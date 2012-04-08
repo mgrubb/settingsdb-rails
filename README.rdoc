@@ -41,3 +41,14 @@ Or use a block:
     c[:myplugin, :site_title] = 'Untitled Plugin'
   end
 
+You can also store rails settings in the database to make your application
+more configurable from the web interface. Add this to your +config/initializer/settingsdb.rb+ file:
+
+  Setting.where(:namespace => :rails).each do |setting|
+    if AppName::Application.config.respond_to?("#{setting.name}=")
+      AppName::Application.config.send("#{setting.name}", setting.value)
+    end
+  end
+
+This assumes your appname is _AppName_, and that you keep rails settings separated in
+it's own namespace (+:rails+, in this example)

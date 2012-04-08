@@ -44,7 +44,9 @@ module SettingsDB::Settings # :nodoc:
     def []=(namespace = :default, index, value)
       obj = get_setting(namespace, index)
       if obj
-        obj.write_attribute(setting_value_field, value)
+        obj.instance_eval do
+          write_attribute(setting_value_field, value)
+        end
         obj.save
         write_cache(obj)
       else
